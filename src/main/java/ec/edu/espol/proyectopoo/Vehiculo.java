@@ -19,5 +19,17 @@ public class Vehiculo {
     protected String color;
     protected String combustible;
     protected double precio;
+
+    public Vehiculo(String placa, String marca, String modelo, String motor, int año, double recorrido, String color, String combustible, double precio) {
+        this.placa = placa;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.motor = motor;
+        this.año = año;
+        this.recorrido = recorrido;
+        this.color = color;
+        this.combustible = combustible;
+        this.precio = precio;
+    }
     
 }
