@@ -5,6 +5,7 @@
  */
 package ec.edu.espol.ProyectoPOO;
 
+import ec.edu.espol.model.Persona;
 import ec.edu.espol.model.Vendedor;
 import java.util.Scanner;
 
@@ -23,6 +24,12 @@ public class Main {
         Scanner sc=new Scanner(System.in);
         Vendedor v=Vendedor.RegistarVendedor(sc);
         System.out.println(v);
+        
+        
+    //Probando el guardar archivo 
+//        Vendedor vp = new Vendedor("Juan", "Perez", "fakf", "fdahfa", "fhaskdhf" );
+        v.saveFile("archivoPrueba.txt");
+    
     }
     
 }
