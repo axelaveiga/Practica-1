@@ -19,6 +19,33 @@ public class Autos extends Vehiculo{
         this.vidrios = vidrios;
         this.transmision=  transmision;
     }
+    public boolean validarEmail(String email){
+        boolean valido = false;
+
+        int antesArroba;
+        int antesPunto;
+        String local;
+        String dominio;
+        char [] caracteres = {'(', ')', '[', ']', '\\',',', ';',':', '<', '>', ' '};
+        int posicionArroba = email.indexOf('@');
+        if (posicionArroba != -1){
+          local = email.substring(0,posicionArroba);
+          dominio= email.substring(posicionArroba + 1,email.length());
+          if(local.length()> 0 && dominio.length() > 0){
+              int posicionPunto = local.lastIndexOf('.');
+              if(posicionPunto == -1){
+                for (int i = 0; i < local.length(); i++) {
+                  for (int j = 0; j < caracteres.length; j++) {
+                    if(local.charAt(i)!= caracteres[j]){
+                      valido = true;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        return valido;
+    }
     
     
 }
