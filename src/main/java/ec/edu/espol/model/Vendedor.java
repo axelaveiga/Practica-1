@@ -40,6 +40,17 @@ public class Vendedor extends Persona {
         return v;
     }
     
+    // Funcion: Agregar String a un archivo
+    //@autor Axel Aveiga
+    public void saveFile(String nomfile) {
+        try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nomfile), true)))
+            {
+                pw.println(this.nombres +"|"+ this.apellidos +"|"+ this.organizacion+"|"+ this.correo +"|"+ this.clave);
+            }
+        catch(Exception e) {System.out.println(e.getMessage());
+                    }
+        }
+    
     @Override
     public String toString() {
         return "Nombres: " + this.nombres + " Apellidos: " + this.apellidos + " Correo electronico: " + this.correo + " Organizacion: " + this.organizacion;
