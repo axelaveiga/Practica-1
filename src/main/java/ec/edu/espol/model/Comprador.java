@@ -31,12 +31,14 @@ public class Comprador extends Persona{
         }
         System.out.println("Ingrese su clave de acceso: ");
         String contrasena=sc.next();
-       
-        Comprador c=new Comprador(nombre,apellidos,organizacion,correo,contrasena);
+
+        String contrasenaConvertida=Persona.convertirSHA256(contrasena);
+        Comprador c=new Comprador(nombre,apellidos,organizacion,correo,contrasenaConvertida);
         return c;
     }
     @Override
     public String toString(){
         return "Nombres: "+this.nombres+" Apellidos: "+this.apellidos+" Correo electronico: "+this.correo+" Organizacion: "+this.organizacion ;
     }
+
 }
