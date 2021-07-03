@@ -15,30 +15,6 @@ public class Vendedor extends Persona{
     public Vendedor(String nombres, String apellidos, String correo, String organizacion, String clave){
         super(nombres,apellidos,correo,organizacion,clave);
     }
-    public static boolean validarEmail(String email){
-        boolean valido = false;
-        String local;
-        String dominio;
-        char [] caracteres = {'(', ')', '[', ']', '\\',',', ';',':', '<', '>', ' '};
-        int posicionArroba = email.indexOf('@');
-        if (posicionArroba != -1){
-          local = email.substring(0,posicionArroba);
-          dominio= email.substring(posicionArroba + 1,email.length());
-          if(local.length()> 0 && dominio.length() > 0){
-              int posicionPunto = local.lastIndexOf('.');
-              if(posicionPunto == -1){
-                for (int i = 0; i < local.length(); i++) {
-                  for (int j = 0; j < caracteres.length; j++) {
-                    if(local.charAt(i)!= caracteres[j]){
-                      valido = true;
-                    }
-                  }
-                }
-              }
-            }
-          }
-        return valido;
-    }
     public static Vendedor RegistarVendedor(Scanner sc){
         System.out.println("Ingrese sus nombres: ");
         String nombre=sc.next();
@@ -48,7 +24,7 @@ public class Vendedor extends Persona{
         String organizacion=sc.next();
         System.out.println("Ingrese su correo electronico: ");
         String correo=sc.next();
-        while (Vendedor.validarEmail(correo)==false){
+        while (Persona.validarEmail(correo)==false){
             System.out.println("Ingrese correo electronico valido: ");
             String correo_n=sc.next();
             correo=correo.replaceAll(correo,correo_n);
@@ -59,6 +35,7 @@ public class Vendedor extends Persona{
         Vendedor v=new Vendedor(nombre,apellidos,organizacion,correo,contrasena);
         return v;
     }
+    @Override
     public String toString(){
         return "Nombres: "+this.nombres+" Apellidos: "+this.apellidos+" Correo electronico: "+this.correo+" Organizacion: "+this.organizacion ;
     }
