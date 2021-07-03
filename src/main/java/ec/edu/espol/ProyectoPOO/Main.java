@@ -5,6 +5,9 @@
  */
 package ec.edu.espol.ProyectoPOO;
 
+import ec.edu.espol.model.Vendedor;
+import java.util.Scanner;
+
 /**
  *
  * @author Axel
@@ -17,7 +20,9 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Scanner sc=new Scanner(System.in);
+        Vendedor v=Vendedor.RegistarVendedor(sc);
+        System.out.println(v);
     }
     
 }
