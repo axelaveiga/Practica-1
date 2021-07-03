@@ -19,6 +19,23 @@ public class Autos extends Vehiculo{
         this.vidrios = vidrios;
         this.transmision=  transmision;
     }
+
+    public String getVidrios() {
+        return vidrios;
+    }
+
+    public void setVidrios(String vidrios) {
+        this.vidrios = vidrios;
+    }
+
+    public String getTransmision() {
+        return transmision;
+    }
+
+    public void setTransmision(String transmision) {
+        this.transmision = transmision;
+    }
+    
     public boolean validarEmail(String email){
         boolean valido = false;
 
