@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package ec.edu.espol.model;
-
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 /**
  *
  * @author Josue Vera
@@ -87,5 +88,25 @@ public class Persona {
           }
         return valido;
     }
+
+        public static String convertirSHA256(String password) {
+            MessageDigest md = null;
+            try {
+                    md = MessageDigest.getInstance("SHA-256");
+            } 
+            catch (NoSuchAlgorithmException e) {		
+                    e.printStackTrace();
+                    return null;
+            }
+
+            byte[] hash = md.digest(password.getBytes());
+            StringBuffer sb = new StringBuffer();
+
+            for(byte b : hash) {        
+                    sb.append(String.format("%02x", b));
+            }
+
+            return sb.toString();
+        }
     
 }
