@@ -5,6 +5,8 @@
  */
 package ec.edu.espol.model;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Josue Vera
@@ -12,5 +14,25 @@ package ec.edu.espol.model;
 public class Comprador extends Persona{
     public Comprador(String nombres, String apellidos, String correo, String organizacion, String clave){
         super(nombres,apellidos,correo,organizacion,clave);
+    }
+        public static Comprador RegistarComprador(Scanner sc){
+        System.out.println("Ingrese sus nombres: ");
+        String nombre=sc.next();
+        System.out.println("Ingrese sus Apellidos: ");
+        String apellidos=sc.next();
+        System.out.println("Ingrese la Organizacion donde trabaja: ");
+        String organizacion=sc.next();
+        System.out.println("Ingrese su correo electronico: ");
+        String correo=sc.next();
+        while (Persona.validarEmail(correo)==false){
+            System.out.println("Ingrese correo electronico valido: ");
+            String correo_n=sc.next();
+            correo=correo.replaceAll(correo,correo_n);
+        }
+        System.out.println("Ingrese su clave de acceso: ");
+        String contrasena=sc.next();
+       
+        Comprador c=new Comprador(nombre,apellidos,organizacion,correo,contrasena);
+        return c;
     }
 }
