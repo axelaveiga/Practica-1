@@ -8,6 +8,8 @@ package ec.edu.espol.ProyectoPOO;
 /**
  *
  * @author Axel
+ * @author Josue
+ * @author Jose
  */
 public class Main {
 
