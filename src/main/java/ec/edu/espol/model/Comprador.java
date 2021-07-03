@@ -35,4 +35,8 @@ public class Comprador extends Persona{
         Comprador c=new Comprador(nombre,apellidos,organizacion,correo,contrasena);
         return c;
     }
+    @Override
+    public String toString(){
+        return "Nombres: "+this.nombres+" Apellidos: "+this.apellidos+" Correo electronico: "+this.correo+" Organizacion: "+this.organizacion ;
+    }
 }
