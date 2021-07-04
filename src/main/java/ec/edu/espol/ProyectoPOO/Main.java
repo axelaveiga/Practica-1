@@ -30,7 +30,7 @@ public class Main {
     //Guarda la informacion del comprador    
         Comprador c=Comprador.RegistarComprador(sc);
         System.out.println(c);
-        c.saveFile("ArchivoVendedores.txt");
+        c.saveFile("ArchivoCompradores.txt");
     
     }
     

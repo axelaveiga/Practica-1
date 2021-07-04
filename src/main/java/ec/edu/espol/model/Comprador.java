@@ -6,6 +6,9 @@
 package ec.edu.espol.model;
 
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 
 /**
  *
@@ -17,11 +20,11 @@ public class Comprador extends Persona{
     }
         public static Comprador RegistarComprador(Scanner sc){
         System.out.println("Ingrese sus nombres: ");
-        String nombre=sc.next();
+        String nombre=sc.nextLine();
         System.out.println("Ingrese sus Apellidos: ");
-        String apellidos=sc.next();
+        String apellidos=sc.nextLine();
         System.out.println("Ingrese la Organizacion donde trabaja: ");
-        String organizacion=sc.next();
+        String organizacion=sc.nextLine();
         System.out.println("Ingrese su correo electronico: ");
         String correo=sc.next();
         while (Persona.validarEmail(correo)==false){
@@ -36,6 +39,14 @@ public class Comprador extends Persona{
         Comprador c=new Comprador(nombre,apellidos,organizacion,correo,contrasenaConvertida);
         return c;
     }
+        public void saveFile(String nomfile) {
+        try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nomfile), true)))
+            {
+                pw.println(this.nombres +"|"+ this.apellidos +"|"+ this.organizacion+"|"+ this.correo +"|"+ this.clave);
+            }
+        catch(Exception e) {System.out.println(e.getMessage());
+                    }
+        }
     @Override
     public String toString(){
         return "Nombres: "+this.nombres+" Apellidos: "+this.apellidos+" Correo electronico: "+this.correo+" Organizacion: "+this.organizacion ;
