@@ -1,9 +1,8 @@
 
 package ec.edu.espol.model;
+
 import java.util.Scanner;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
+
 /**
  *
  * @author Josue Vera
@@ -14,11 +13,11 @@ public class Vendedor extends Persona{
     }
     public static Vendedor RegistarVendedor(Scanner sc){
         System.out.println("Ingrese sus nombres: ");
-        String nombre=sc.nextLine();
+        String nombre=sc.next();
         System.out.println("Ingrese sus Apellidos: ");
-        String apellidos=sc.nextLine();
+        String apellidos=sc.next();
         System.out.println("Ingrese la Organizacion donde trabaja: ");
-        String organizacion=sc.nextLine();
+        String organizacion=sc.next();
         System.out.println("Ingrese su correo electronico: ");
         String correo=sc.next();
         while (Persona.validarEmail(correo)==false){
@@ -32,19 +31,8 @@ public class Vendedor extends Persona{
         Vendedor v=new Vendedor(nombre,apellidos,organizacion,correo,contrasenaConvertida);
         return v;
     }
-    
-    // Funcion: Agregar String a un archivo
-    //@autor Axel Aveiga
-    public void saveFile(String nomfile) {
-        try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nomfile), true)))
-            {
-                pw.println(this.nombres +"|"+ this.apellidos +"|"+ this.organizacion+"|"+ this.correo +"|"+ this.clave);
-            }
-        catch(Exception e) {System.out.println(e.getMessage());
-                    }
-        }
-    
-    public Vehiculo RegistrarVehiculo(Scanner sc){
+
+         public Vehiculo RegistrarVehiculo(Scanner sc){
          System.out.println("Ingrese el tipo de vehiculo que quiere registrar: ");
          String tipo= sc.next();
          if (tipo.equalsIgnoreCase("auto"))
@@ -54,9 +42,7 @@ public class Vendedor extends Persona{
          if (tipo.equalsIgnoreCase("camioneta"))
            Camioneta.DatosCamioneta(sc);
         return null;
-    }
-    
-    
+     }
     @Override
     public String toString(){
         return "Nombres: "+this.nombres+" Apellidos: "+this.apellidos+" Correo electronico: "+this.correo+" Organizacion: "+this.organizacion ;

@@ -5,9 +5,6 @@
  */
 package ec.edu.espol.model;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
 import java.util.Scanner;
 
 /**
@@ -39,16 +36,6 @@ public class Comprador extends Persona{
         Comprador c=new Comprador(nombre,apellidos,organizacion,correo,contrasenaConvertida);
         return c;
     }
-    
-        public void saveFile(String nomfile) {
-        try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nomfile), true)))
-            {
-                pw.println(this.nombres +"|"+ this.apellidos +"|"+ this.organizacion+"|"+ this.correo +"|"+ this.clave);
-            }
-        catch(Exception e) {System.out.println(e.getMessage());
-                    }
-        }
-        
     @Override
     public String toString(){
         return "Nombres: "+this.nombres+" Apellidos: "+this.apellidos+" Correo electronico: "+this.correo+" Organizacion: "+this.organizacion ;
