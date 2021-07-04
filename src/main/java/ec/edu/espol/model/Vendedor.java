@@ -41,7 +41,7 @@ public class Vendedor extends Persona{
          while ((tipo.equalsIgnoreCase("auto")||tipo.equalsIgnoreCase("moto")||tipo.equalsIgnoreCase("camioneta"))== false){
              System.out.println("Ingrese si su vehiculo es: auto-moto-camioneta");
              String tipon= sc.next();
-             tipo=tipo.replaceAll(tipon,tipon);  
+             tipo=tipo.replaceAll(tipo,tipon);  
          }
          if (tipo.equalsIgnoreCase("auto"))
            Autos.DatosAuto(sc);
