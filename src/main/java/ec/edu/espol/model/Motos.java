@@ -20,9 +20,9 @@ public class Motos extends Vehiculo {
     public static Vehiculo DatosMoto(Scanner sc){
         System.out.println("Ingrese la placa del vehiculo: ");
         String placa =sc.next();
-        System.out.println("Ingrese la marca del vehiculo: ");
+        System.out.println("Ingrese la marca del marca: ");
         String marca= sc.next();
-        System.out.println("Ingrese el modelo del vehiculo: ");
+        System.out.println("Ingrese el modelo el modelo: ");
         String modelo= sc.next();
         System.out.println("Ingrese el tipo de motor que tiene el vehiculo: ");
         String motor=sc.next();

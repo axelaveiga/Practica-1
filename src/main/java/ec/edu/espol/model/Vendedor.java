@@ -14,11 +14,11 @@ public class Vendedor extends Persona{
     }
     public static Vendedor RegistarVendedor(Scanner sc){
         System.out.println("Ingrese sus nombres: ");
-        String nombre=sc.next();
+        String nombre=sc.nextLine();
         System.out.println("Ingrese sus Apellidos: ");
-        String apellidos=sc.next();
+        String apellidos=sc.nextLine();
         System.out.println("Ingrese la Organizacion donde trabaja: ");
-        String organizacion=sc.next();
+        String organizacion=sc.nextLine();
         System.out.println("Ingrese su correo electronico: ");
         String correo=sc.next();
         while (Persona.validarEmail(correo)==false){
@@ -32,7 +32,6 @@ public class Vendedor extends Persona{
         Vendedor v=new Vendedor(nombre,apellidos,organizacion,correo,contrasenaConvertida);
         return v;
     }
-<<<<<<< HEAD
     
     // Funcion: Agregar String a un archivo
     //@autor Axel Aveiga
@@ -46,10 +45,6 @@ public class Vendedor extends Persona{
         }
     
     public Vehiculo RegistrarVehiculo(Scanner sc){
-=======
-
-         public Vehiculo RegistrarVehiculo(Scanner sc){
->>>>>>> f5399553cc2397abb1983cc4ba3174f74082e9b1
          System.out.println("Ingrese el tipo de vehiculo que quiere registrar: ");
          String tipo= sc.next();
          if (tipo.equalsIgnoreCase("auto"))
@@ -60,6 +55,8 @@ public class Vendedor extends Persona{
            Camioneta.DatosCamioneta(sc);
         return null;
     }
+    
+    
     @Override
     public String toString(){
         return "Nombres: "+this.nombres+" Apellidos: "+this.apellidos+" Correo electronico: "+this.correo+" Organizacion: "+this.organizacion ;
