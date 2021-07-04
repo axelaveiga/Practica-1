@@ -12,6 +12,7 @@ public class Menu extends Persona{
         super(nombres,apellidos,correo,organizacion,clave); 
     }
     public final static int  cargarMenu(Scanner sc){
+           System.out.println("Menu de opciones");
            System.out.println("M enu de opciones");
            System.out.println("1. Vendedor");
            System.out.println("2. Comprador");
