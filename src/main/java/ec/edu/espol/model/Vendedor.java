@@ -19,43 +19,43 @@ public class Vendedor extends Persona{
         super(nombres,apellidos,correo,organizacion,clave);
     }
 
-    public String getNombres() {
+    public String getNombresVendedor() {
         return nombres;
     }
 
-    public void setNombres(String nombres) {
+    public void setNombresVendedor(String nombres) {
         this.nombres = nombres;
     }
 
-    public String getApellidos() {
+    public String getApellidosVendedor() {
         return apellidos;
     }
 
-    public void setApellidos(String apellidos) {
+    public void setApellidosVendedor(String apellidos) {
         this.apellidos = apellidos;
     }
 
-    public String getCorreo() {
+    public String getCorreoVendedor() {
         return correo;
     }
 
-    public void setCorreo(String correo) {
+    public void setCorreoVendedor(String correo) {
         this.correo = correo;
     }
 
-    public String getOrganizacion() {
+    public String getOrganizacionVendedor() {
         return organizacion;
     }
 
-    public void setOrganizacion(String organizacion) {
+    public void setOrganizacionVendedor(String organizacion) {
         this.organizacion = organizacion;
     }
 
-    public String getClave() {
+    public String getClaveVendedor() {
         return clave;
     }
 
-    public void setClave(String clave) {
+    public void setClaveVendedor(String clave) {
         this.clave = clave;
     }
     
@@ -73,12 +73,12 @@ public class Vendedor extends Persona{
             String correo_n=sc.next();
             correo=correo.replaceAll(correo,correo_n);
         }
-        boolean estar=Vendedor.ComprobarCorreo("ArchivoVendedores.txt", correo);
+        boolean estar=Persona.ComprobarCorreo("ArchivoVendedores.txt", correo);
         while (estar==false){
             System.out.println("El correo ingresado ya esta regsitrado, ingrese correo electronico valido: ");
             String correo_n=sc.next();
             correo=correo.replaceAll(correo,correo_n);
-             estar=Vendedor.ComprobarCorreo("ArchivoVendedores.txt", correo);
+             estar=Persona.ComprobarCorreo("ArchivoVendedores.txt", correo);
         }
         System.out.println("Ingrese su clave de acceso: ");
         String contrasena=sc.next();
@@ -127,16 +127,7 @@ public class Vendedor extends Persona{
         }
         return Vendedores;
     }
-        public static boolean ComprobarCorreo(String nomfile,String Email)
-    {
-        ArrayList<Vendedor> vendedores=Vendedor.readFile(nomfile);
-        for(Vendedor v : vendedores)
-        {
-            if(v.correo.equals(Email))
-                return false;
-        }
-        return true;
-    }
+        
     }
     
     

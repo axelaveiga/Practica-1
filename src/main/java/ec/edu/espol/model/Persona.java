@@ -6,6 +6,7 @@
 package ec.edu.espol.model;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 /**
  *
  * @author Josue Vera
@@ -108,5 +109,15 @@ public class Persona {
 
             return sb.toString();
         }
+        public static boolean ComprobarCorreo(String nomfile,String Email)
+    {
+        ArrayList<Vendedor> vendedores=Vendedor.readFile(nomfile);
+        for(Vendedor v : vendedores)
+        {
+            if(v.correo.equals(Email))
+                return false;
+        }
+        return true;
+    }
     
 }
