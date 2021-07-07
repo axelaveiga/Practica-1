@@ -9,6 +9,7 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 /**
  *
@@ -32,6 +33,13 @@ public class Comprador extends Persona{
             String correo_n=sc.next();
             correo=correo.replaceAll(correo,correo_n);
         }
+        boolean estar=Persona.ComprobarCorreo("ArchivoCompradores.txt", correo);
+        while (estar==false){
+            System.out.println("El correo ingresado ya esta registrado, ingrese correo electronico valido: ");
+            String correo_n=sc.next();
+            correo=correo.replaceAll(correo,correo_n);
+             estar=Persona.ComprobarCorreo("ArchivoCompradores.txt", correo);
+        }
         System.out.println("Ingrese su clave de acceso: ");
         String contrasena=sc.next();
 
@@ -47,6 +55,22 @@ public class Comprador extends Persona{
         catch(Exception e) {System.out.println(e.getMessage());
                     }
         }
+        public static ArrayList<Comprador> readFile(String nomfile){
+        ArrayList<Comprador> compradores = new ArrayList<>();
+        try(Scanner sc = new Scanner(new File(nomfile))){
+            while(sc.hasNextLine())
+            {
+                String linea = sc.nextLine();
+                String[] tokens = linea.split("\\|");
+                Comprador e = new Comprador(tokens[0],tokens[1],tokens[2],tokens[3],tokens[4]);
+                compradores.add(e);
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return compradores;
+    }
     @Override
     public String toString(){
         return "Nombres: "+this.nombres+" Apellidos: "+this.apellidos+" Correo electronico: "+this.correo+" Organizacion: "+this.organizacion ;

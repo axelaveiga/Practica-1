@@ -75,7 +75,7 @@ public class Vendedor extends Persona{
         }
         boolean estar=Persona.ComprobarCorreo("ArchivoVendedores.txt", correo);
         while (estar==false){
-            System.out.println("El correo ingresado ya esta regsitrado, ingrese correo electronico valido: ");
+            System.out.println("El correo ingresado ya esta registrado, ingrese correo electronico valido: ");
             String correo_n=sc.next();
             correo=correo.replaceAll(correo,correo_n);
              estar=Persona.ComprobarCorreo("ArchivoVendedores.txt", correo);
