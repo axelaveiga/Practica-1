@@ -33,12 +33,12 @@ public class Comprador extends Persona{
             String correo_n=sc.next();
             correo=correo.replaceAll(correo,correo_n);
         }
-        boolean estar=Persona.ComprobarCorreo("ArchivoCompradores.txt", correo);
+        boolean estar=Comprador.ComprobarCorreoComprador("ArchivoCompradores.txt", correo);
         while (estar==false){
             System.out.println("El correo ingresado ya esta registrado, ingrese correo electronico valido: ");
             String correo_n=sc.next();
             correo=correo.replaceAll(correo,correo_n);
-             estar=Persona.ComprobarCorreo("ArchivoCompradores.txt", correo);
+             estar=Comprador.ComprobarCorreoComprador("ArchivoCompradores.txt", correo);
         }
         System.out.println("Ingrese su clave de acceso: ");
         String contrasena=sc.next();
@@ -70,6 +70,16 @@ public class Comprador extends Persona{
             System.out.println(e.getMessage());
         }
         return compradores;
+    }
+        public static boolean ComprobarCorreoComprador(String nomfile,String Email)
+    {
+        ArrayList<Comprador> compradores=Comprador.readFile(nomfile);
+        for(Comprador c : compradores)
+        {
+            if(c.correo.equals(Email))
+                return false;
+        }
+        return true;
     }
     @Override
     public String toString(){

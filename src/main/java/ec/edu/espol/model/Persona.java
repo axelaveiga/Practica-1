@@ -109,15 +109,4 @@ public class Persona {
 
             return sb.toString();
         }
-        public static boolean ComprobarCorreo(String nomfile,String Email)
-    {
-        ArrayList<Vendedor> vendedores=Vendedor.readFile(nomfile);
-        for(Vendedor v : vendedores)
-        {
-            if(v.correo.equals(Email))
-                return false;
-        }
-        return true;
-    }
-    
 }

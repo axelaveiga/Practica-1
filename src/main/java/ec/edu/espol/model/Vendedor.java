@@ -73,12 +73,12 @@ public class Vendedor extends Persona{
             String correo_n=sc.next();
             correo=correo.replaceAll(correo,correo_n);
         }
-        boolean estar=Persona.ComprobarCorreo("ArchivoVendedores.txt", correo);
+        boolean estar=Vendedor.ComprobarCorreoVendedor("ArchivoVendedores.txt", correo);
         while (estar==false){
             System.out.println("El correo ingresado ya esta registrado, ingrese correo electronico valido: ");
             String correo_n=sc.next();
             correo=correo.replaceAll(correo,correo_n);
-             estar=Persona.ComprobarCorreo("ArchivoVendedores.txt", correo);
+             estar=Vendedor.ComprobarCorreoVendedor("ArchivoVendedores.txt", correo);
         }
         System.out.println("Ingrese su clave de acceso: ");
         String contrasena=sc.next();
@@ -126,6 +126,34 @@ public class Vendedor extends Persona{
             System.out.println(e.getMessage());
         }
         return Vendedores;
+    }
+        public static boolean ComprobarCorreoVendedor(String nomfile,String Email)
+    {
+        ArrayList<Vendedor> vendedores=Vendedor.readFile(nomfile);
+        for(Vendedor v : vendedores)
+        {
+            if(v.correo.equals(Email))
+                return false;
+        }
+        return true;
+    }
+        public static boolean ComprobarCreedencialesVendedor(String nomfile,String correo, String contrasenia)
+    {
+        ArrayList<Vendedor> vendedores=Vendedor.readFile(nomfile);
+        String contrasena_login=Persona.convertirSHA256(contrasenia);
+        for(Vendedor v : vendedores)
+        {
+            if(v.correo.equals(correo)){
+                String hash=Persona.convertirSHA256(v.clave);
+                if((hash.equals(contrasena_login)))
+                    return true;
+            }
+        }
+        return false;
+    }
+    @Override
+    public String toString(){
+        return "Nombres: "+this.nombres+" Apellidos: "+this.apellidos+" Correo electronico: "+this.correo+" Organizacion: "+this.organizacion;
     }
         
     }
