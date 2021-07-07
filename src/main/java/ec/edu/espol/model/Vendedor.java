@@ -59,7 +59,7 @@ public class Vendedor extends Persona{
         this.clave = clave;
     }
     
-    public static Vendedor  RegistarVendedor(Scanner sc){
+    public static void RegistarVendedor(Scanner sc){
         System.out.println("Ingrese sus nombres: ");
         String nombre=sc.next();
         System.out.println("Ingrese sus Apellidos: ");
@@ -73,20 +73,12 @@ public class Vendedor extends Persona{
             String correo_n=sc.next();
             correo=correo.replaceAll(correo,correo_n);
         }
-        Vendedor.aniadirLista(correo);
         System.out.println("Ingrese su clave de acceso: ");
         String contrasena=sc.next();
-       
-        Vendedor v=new Vendedor(nombre,apellidos,organizacion,correo,contrasena);
-        return v;
+        Vendedor v=new Vendedor(nombre,apellidos,organizacion,correo,Persona.convertirSHA256(contrasena));
+        v.saveFile("ArchivoVendedores.txt");
     }
 
-    public static ArrayList<String> aniadirLista(String correo) {
-        ArrayList<String> listaCorreos=new ArrayList<>();
-        if(!(listaCorreos.contains(correo)))
-            listaCorreos.add(correo);
-        return listaCorreos;
-    }
     public void saveFile(String nomfile) {
         try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nomfile), true)))
             {
@@ -112,6 +104,22 @@ public class Vendedor extends Persona{
            Camioneta.DatosCamioneta(sc);
         return null;
      }
+         public static ArrayList<Vendedor> readFile(String nomfile){
+        ArrayList<Vendedor> Vendedores = new ArrayList<>();
+        try(Scanner sc = new Scanner(new File(nomfile))){
+            while(sc.hasNextLine())
+            {
+                String linea = sc.nextLine();
+                String[] tokens = linea.split("\\|");
+                Vendedor e = new Vendedor(tokens[0],tokens[1],tokens[2],tokens[3],tokens[4]);
+                Vendedores.add(e);
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return Vendedores;
+    }
     
     }
     
