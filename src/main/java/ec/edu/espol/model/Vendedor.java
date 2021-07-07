@@ -73,6 +73,13 @@ public class Vendedor extends Persona{
             String correo_n=sc.next();
             correo=correo.replaceAll(correo,correo_n);
         }
+        boolean estar=Vendedor.ComprobarCorreo("ArchivoVendedores.txt", correo);
+        while (estar==false){
+            System.out.println("El correo ingresado ya esta regsitrado, ingrese correo electronico valido: ");
+            String correo_n=sc.next();
+            correo=correo.replaceAll(correo,correo_n);
+             estar=Vendedor.ComprobarCorreo("ArchivoVendedores.txt", correo);
+        }
         System.out.println("Ingrese su clave de acceso: ");
         String contrasena=sc.next();
         Vendedor v=new Vendedor(nombre,apellidos,organizacion,correo,Persona.convertirSHA256(contrasena));
@@ -120,7 +127,16 @@ public class Vendedor extends Persona{
         }
         return Vendedores;
     }
-    
+        public static boolean ComprobarCorreo(String nomfile,String Email)
+    {
+        ArrayList<Vendedor> vendedores=Vendedor.readFile(nomfile);
+        for(Vendedor v : vendedores)
+        {
+            if(v.correo.equals(Email))
+                return false;
+        }
+        return true;
+    }
     }
     
     
