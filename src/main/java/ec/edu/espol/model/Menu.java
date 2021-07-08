@@ -58,20 +58,6 @@ public class Menu extends Persona{
                 Vendedor.RegistarVendedor(sc);
             }
             if(opV==2){
-            System.out.println("Ingrese su correo electronico: ");
-                String correo=sc.next();
-                System.out.println("Ingrese su contraseña: ");
-                String contrasenia=sc.next();
-                boolean permiso=Vendedor.ComprobarCreedencialesVendedor("ArchivoVendedores.txt", correo, contrasenia);
-                while(permiso==false){
-                    System.out.println("El usuario o contraseña ingresados son incorrectos, ingrese creedenciales nuevamente: ");
-                    System.out.println("Ingrese su correo electronico: ");
-                    String correo_n=sc.next();
-                    System.out.println("Ingrese su contraseña: ");
-                    String contrasenia_n=sc.next();
-                    correo=correo.replaceAll(contrasenia,contrasenia_n);
-                    permiso=Vendedor.ComprobarCreedencialesVendedor("ArchivoVendedores.txt", correo, contrasenia);
-                }
                 Vendedor.RegistarVendedor(sc);
             }
             

@@ -46,9 +46,16 @@ public class Camioneta extends Vehiculo {
     public void setTraccion(String traccion) {
         this.traccion = traccion;
     }
-        public static Vehiculo DatosCamioneta(Scanner sc){
+        public static void DatosCamioneta(Scanner sc){
         System.out.println("Ingrese la placa del vehiculo: ");
         String placa =sc.next();
+        Boolean op=Vehiculo.ComprobarPlaca("Vehiculos.txt",placa);
+        while(op==true){
+            System.out.println("Placa ya registrada en el sistema, por favor ingrese otra: ");
+            String placa_n=sc.next();
+            placa=placa.replaceAll(placa,placa_n);
+            op=Vehiculo.ComprobarPlaca("Vehiculos.txt",placa);
+        }
         System.out.println("Ingrese la marca del vehiculo: ");
         String marca= sc.next();
         System.out.println("Ingrese el modelo del vehiculo: ");
@@ -72,6 +79,7 @@ public class Camioneta extends Vehiculo {
         System.out.println("Ingrese la traccion del vehiculo: ");
         String traccion=sc.next();
         Vehiculo camioneta= new Camioneta(vidrios,placa,marca,modelo,motor,año,recorrido,color,combustible,precio,transmision,traccion);
-        return camioneta;     
+        camioneta.saveFile("Vehiculos.txt"); 
+        camioneta.saveFile("Camionetas.txt");
     }
 }

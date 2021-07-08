@@ -33,9 +33,16 @@ public class Autos extends Vehiculo{
     public void setTransmision(String transmision) {
         this.transmision = transmision;
     }
-    public static Vehiculo DatosAuto(Scanner sc){
+    public static void DatosAuto(Scanner sc){
         System.out.println("Ingrese la placa del vehiculo: ");
         String placa =sc.next();
+        Boolean op=Vehiculo.ComprobarPlaca("Vehiculos.txt",placa);
+        while(op==true){
+            System.out.println("Placa ya registrada en el sistema, por favor ingrese otra: ");
+            String placa_n=sc.next();
+            placa=placa.replaceAll(placa,placa_n);
+            op=Vehiculo.ComprobarPlaca("Vehiculos.txt",placa);
+        }
         System.out.println("Ingrese la marca del vehiculo: ");
         String marca= sc.next();
         System.out.println("Ingrese el modelo del vehiculo: ");
@@ -57,6 +64,7 @@ public class Autos extends Vehiculo{
         System.out.println("Ingrese que tipos de vidrio tine su vehiculo: ");
         String vidrios= sc.next();
         Vehiculo auto= new Autos(vidrios,placa,marca,modelo,motor,año,recorrido,color,combustible,precio,transmision);
-        return auto;     
+        auto.saveFile("Vehiculos.txt"); 
+        auto.saveFile("Autos.txt");
     }
 }

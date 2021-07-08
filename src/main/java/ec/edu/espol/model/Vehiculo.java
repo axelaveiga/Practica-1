@@ -5,6 +5,12 @@
  */
 package ec.edu.espol.model;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 /**
  *
  * @author Axel
@@ -102,6 +108,42 @@ public class Vehiculo {
 
     public void setPrecio(double precio) {
         this.precio = precio;
+    }
+    public void saveFile(String nomfile) {
+        try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nomfile), true)))
+        {
+            pw.println(this.placa +"|"+this.marca +"|"+this.modelo+"|"+this.motor +"|"+ this.año+"|"+this.recorrido+"|"+ this.color+"|"+ this.combustible+"|"+ this.precio);
+        }
+        catch(Exception e) {System.out.println(e.getMessage());
+                    
+        }
+    }
+    public static ArrayList<Vehiculo> readFile(String nomfile){
+        ArrayList<Vehiculo> vehiculos = new ArrayList<>();
+        try(Scanner sc = new Scanner(new File(nomfile))){
+            while(sc.hasNextLine())
+            {
+                String linea = sc.nextLine();
+                String[] tokens = linea.split("\\|");
+                Vehiculo v = new Vehiculo(tokens[0],tokens[1],tokens[2],tokens[3],Integer.parseInt(tokens[4]),Double.parseDouble(tokens[5]),tokens[6],tokens[7],Double.parseDouble(tokens[8]));
+                vehiculos.add(v);
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return vehiculos;
+    }
+        public static boolean ComprobarPlaca(String nomfile,String placa)
+    {
+        ArrayList<Vehiculo> vehiculos=Vehiculo.readFile(nomfile);
+        for(Vehiculo v : vehiculos)
+        {
+            if(v.placa.equals(placa)){
+                return true;
+            }
+        }
+        return false;
     }
     
     

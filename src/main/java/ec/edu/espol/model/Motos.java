@@ -17,9 +17,16 @@ public class Motos extends Vehiculo {
     public Motos(String placa, String marca, String modelo, String motor, int año, double recorrido, String color, String combustible, double precio) {
         super(placa, marca, modelo, motor, año, recorrido, color, combustible, precio);
     }
-    public static Vehiculo DatosMoto(Scanner sc){
+    public static void DatosMoto(Scanner sc){
         System.out.println("Ingrese la placa del vehiculo: ");
         String placa =sc.next();
+        Boolean op=Vehiculo.ComprobarPlaca("Vehiculos.txt",placa);
+        while(op==true){
+            System.out.println("Placa ya registrada en el sistema, por favor ingrese otra: ");
+            String placa_n=sc.next();
+            placa=placa.replaceAll(placa,placa_n);
+            op=Vehiculo.ComprobarPlaca("Vehiculos.txt",placa);
+        }
         System.out.println("Ingrese la marca del marca: ");
         String marca= sc.next();
         System.out.println("Ingrese el modelo del modelo: ");
@@ -37,7 +44,8 @@ public class Motos extends Vehiculo {
         System.out.println("Ingrese el precio de su vehiculo: ");
         double precio= sc.nextDouble();
         Vehiculo moto= new Motos(placa,marca,modelo,motor,año,recorrido,color,combustible,precio);
-        return moto;     
+        moto.saveFile("Vehiculos.txt");
+        moto.saveFile("Motos.txt");
     }
 
     }

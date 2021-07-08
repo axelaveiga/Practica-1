@@ -95,7 +95,21 @@ public class Vendedor extends Persona{
                     
         }
 }
-         public Vehiculo RegistrarVehiculo(Scanner sc){
+         public static void RegistrarVehiculo(Scanner sc){
+            System.out.println("Ingrese su correo electronico: ");
+            String correo=sc.next();
+            System.out.println("Ingrese su contraseña: ");
+            String contrasenia=sc.next();
+            boolean permiso=Vendedor.ComprobarCreedencialesVendedor("ArchivoVendedores.txt", correo, contrasenia);
+            while(permiso==false){
+                System.out.println("El usuario o contraseña ingresados son incorrectos, ingrese creedenciales nuevamente: ");
+                System.out.println("Ingrese su correo electronico: ");
+                String correo_n=sc.next();
+                System.out.println("Ingrese su contraseña: ");
+                String contrasenia_n=sc.next();
+                correo=correo.replaceAll(contrasenia,contrasenia_n);
+                permiso=Vendedor.ComprobarCreedencialesVendedor("ArchivoVendedores.txt", correo, contrasenia);
+            }
          System.out.println("Ingrese el tipo de vehiculo que quiere registrar: ");
          String tipo= sc.next();
          while ((tipo.equalsIgnoreCase("auto")||tipo.equalsIgnoreCase("moto")||tipo.equalsIgnoreCase("camioneta"))== false){
@@ -109,7 +123,6 @@ public class Vendedor extends Persona{
            Motos.DatosMoto(sc);
         if (tipo.equalsIgnoreCase("camioneta"))
            Camioneta.DatosCamioneta(sc);
-        return null;
      }
          public static ArrayList<Vendedor> readFile(String nomfile){
         ArrayList<Vendedor> Vendedores = new ArrayList<>();
@@ -143,14 +156,33 @@ public class Vendedor extends Persona{
         String contrasena_login=Persona.convertirSHA256(contrasenia);
         for(Vendedor v : vendedores)
         {
-            if(v.correo.equals(correo)){
-                String hash=Persona.convertirSHA256(v.clave);
-                if((hash.equals(contrasena_login)))
-                    return true;
+            if(v.correo.contains(correo) && v.clave.contains(contrasena_login)){
+                return true;
             }
         }
         return false;
     }
+    public static void AceptarOferta(Scanner sc){
+       System.out.println("Ingrese su correo electronico: ");
+            String correo=sc.next();
+            System.out.println("Ingrese su contraseña: ");
+            String contrasenia=sc.next();
+            boolean permiso=Vendedor.ComprobarCreedencialesVendedor("ArchivoVendedores.txt", correo, contrasenia);
+            while(permiso==false){
+                System.out.println("El usuario o contraseña ingresados son incorrectos, ingrese creedenciales nuevamente: ");
+                System.out.println("Ingrese su correo electronico: ");
+                String correo_n=sc.next();
+                System.out.println("Ingrese su contraseña: ");
+                String contrasenia_n=sc.next();
+                correo=correo.replaceAll(contrasenia,contrasenia_n);
+                permiso=Vendedor.ComprobarCreedencialesVendedor("ArchivoVendedores.txt", correo, contrasenia);
+            } 
+        System.out.println("Ingrese placa del vehiculo: ");
+        
+        System.out.println("");
+        //TERMINAR COMPRADOR
+    }
+
     @Override
     public String toString(){
         return "Nombres: "+this.nombres+" Apellidos: "+this.apellidos+" Correo electronico: "+this.correo+" Organizacion: "+this.organizacion;
