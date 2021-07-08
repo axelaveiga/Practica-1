@@ -27,11 +27,12 @@ public class Main {
         Scanner sc=new Scanner(System.in);
         sc.useDelimiter("\n");
         sc.useLocale(Locale.US);
+        Comprador.OfertarVehiculo(sc);
+        //Vendedor.RegistrarVehiculo(sc);
         //Vendedor.RegistarVendedor(sc);
-        ArrayList<Vendedor> vendedores=Vendedor.readFile("ArchivoVendedores.txt");
-        System.out.println(vendedores);
-        System.out.println(Persona.convertirSHA256("prueba1"));
-        System.out.println(Vendedor.ComprobarCreedencialesVendedor("ArchivoVendedores.txt","prueba@hotmail.com", "prueba1"));
+        //ArrayList<Vendedor> vendedores=Vendedor.readFile("ArchivoVendedores.txt");
+        //System.out.println(vendedores);
+        //System.out.println(Persona.convertirSHA256("prueba1"));
         //System.out.println(v);
         //System.out.println(Menu.cargarMenu(sc));
         //System.out.println(v);
