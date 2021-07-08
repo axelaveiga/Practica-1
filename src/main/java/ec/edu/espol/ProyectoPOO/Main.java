@@ -27,7 +27,7 @@ public class Main {
         Scanner sc=new Scanner(System.in);
         sc.useDelimiter("\n");
         sc.useLocale(Locale.US);
-        Comprador.OfertarVehiculo(sc);
+//        Comprador.OfertarVehiculo(sc);
         //Vendedor.RegistrarVehiculo(sc);
         //Vendedor.RegistarVendedor(sc);
         //ArrayList<Vendedor> vendedores=Vendedor.readFile("ArchivoVendedores.txt");
@@ -43,5 +43,61 @@ public class Main {
         //System.out.println(c);
         //c.saveFile("ArchivoVendedores.txt");
         //c.saveFile("ArchivoCompradores.txt");
+            int opcion =0;
+            do{
+               System.out.println("-- Menu de opciones --");
+               System.out.println("1. Vendedor");
+               System.out.println("2. Comprador");
+               System.out.println("3. Salir");
+               System.out.println("Ingrese una de las opciones: ");
+               opcion = sc.nextInt();
+               switch (opcion){
+                case 1:
+                   int opcionv=0;
+                   do{
+                       System.out.println("1. Registrar un nuevo vendedor");
+                       System.out.println("2. Ingresar un nuevo vehiculo");
+                       System.out.println("3. Aceptar oferta");
+                       System.out.println("4. Regresar");
+                       System.out.println("Ingrese una opcion: ");
+                       opcionv = sc.nextInt();
+                       switch(opcionv){
+                           case 1:
+                               break;
+                           case 2:
+                               break;
+                           case 3:
+                               break;
+                           case 4:
+                               break;
+                       }
+                   }
+                   while(opcionv !=4);
+                   break;
+                case 2:
+                   int opcionc=0;
+                   do{
+                       System.out.println("1. Registrar un nuevo comprador");
+                       System.out.println("2. Ofertar por un vehiculo");
+                       System.out.println("3. Regresar");
+                       System.out.println("Ingrese opcion: ");
+                       opcionc = sc.nextInt();
+                       switch(opcionc){
+                           case 1:
+                               break;
+                           case 2:
+                               break;
+                           case 3:
+                               break;
+                       }
+                   }
+                   while(opcionc !=3);
+                   break;
+                case 3:
+                   System.out.println("Gracias por su atención");
+                   break;
+               }
+            }while (opcion!=3);
+           
     }
 }
