@@ -166,7 +166,7 @@ public class Comprador extends Persona{
                                 indice--;
                             }
                             if(desicion.equals("E") ||desicion.equals("e")){
-                                System.out.println("Fin del programa");
+                                System.out.println("Regresando a inicio...");
                                 break;
                             }
                         }
@@ -176,6 +176,7 @@ public class Comprador extends Persona{
             }
             else
                 while(siguiente=true){
+                    System.out.println("Vehiculo # "+indice+1);
                     System.out.println("Placa: "+VehiculossinRestriccion.get(indice).placa);
                     System.out.println("Marca: "+VehiculossinRestriccion.get(indice).marca);
                     System.out.println("Modelo: "+VehiculossinRestriccion.get(indice).modelo);
@@ -185,25 +186,52 @@ public class Comprador extends Persona{
                     System.out.println("Color: "+VehiculossinRestriccion.get(indice).color);
                     System.out.println("Tipo de Combustible: "+VehiculossinRestriccion.get(indice).combustible);
                     System.out.println("Precio: "+VehiculossinRestriccion.get(indice).precio);
-                    System.out.println("Continuar? de ser asi marque S si desea regresar al vehiculo anterior marque R");
-                    String desicion=sc.next();
-                    if(indice<VehiculossinRestriccion.size() &&indice>0){
-                        if(desicion.equals("S") ||desicion.equals("s"))
-                            indice++;
-                        if(desicion.equals("R") ||desicion.equals("r"))
-                            indice--;
+                    if(VehiculossinRestriccion.size()>1){
+                        if(indice<VehiculossinRestriccion.size() &&indice==0){
+                            System.out.println("Continuar? de ser asi marque S: ");
+                            String desicion=sc.next();
+                            if(desicion.equals("S") ||desicion.equals("s"))
+                                indice++;
+                            System.out.println("Placa: "+VehiculossinRestriccion.get(indice).placa);
+                            System.out.println("Marca: "+VehiculossinRestriccion.get(indice).marca);
+                            System.out.println("Modelo: "+VehiculossinRestriccion.get(indice).modelo);
+                            System.out.println("Tipo de motor: "+VehiculossinRestriccion.get(indice).motor);
+                            System.out.println("Año: "+VehiculossinRestriccion.get(indice).año);
+                            System.out.println("Recorrido: "+VehiculossinRestriccion.get(indice).recorrido);
+                            System.out.println("Color: "+VehiculossinRestriccion.get(indice).color);
+                            System.out.println("Tipo de Combustible: "+VehiculossinRestriccion.get(indice).combustible);
+                            System.out.println("Precio: "+VehiculossinRestriccion.get(indice).precio);    
                         }
-                    if(indice==VehiculossinRestriccion.size()){
-                        System.out.println("Desea retroceder o desea salir? si desea retroceder marque R, si desea salir Marque E: ");
-                        desicion=sc.next();
-                        if(desicion.equals("R") ||desicion.equals("r"))
-                            indice--;
-                        if(desicion.equals("E") ||desicion.equals("e"))
-                            siguiente=false;
+                        if(indice>0 && indice<VehiculossinRestriccion.size()-1){
+                            System.out.println("Continuar? de ser asi marque S, si desea regresar al vehiculo anterior marque R: ");
+                            String desicion=sc.next();
+                            if(desicion.equals("S") ||desicion.equals("s"))
+                                indice++;
+                            if(desicion.equals("R") ||desicion.equals("r"))
+                                indice--;
+                            System.out.println("Placa: "+VehiculossinRestriccion.get(indice).placa);
+                            System.out.println("Marca: "+VehiculossinRestriccion.get(indice).marca);
+                            System.out.println("Modelo: "+VehiculossinRestriccion.get(indice).modelo);
+                            System.out.println("Tipo de motor: "+VehiculossinRestriccion.get(indice).motor);
+                            System.out.println("Año: "+VehiculossinRestriccion.get(indice).año);
+                            System.out.println("Recorrido: "+VehiculossinRestriccion.get(indice).recorrido);
+                            System.out.println("Color: "+VehiculossinRestriccion.get(indice).color);
+                            System.out.println("Tipo de Combustible: "+VehiculossinRestriccion.get(indice).combustible);
+                            System.out.println("Precio: "+VehiculossinRestriccion.get(indice).precio);
+                        }
+                        else{
+                            System.out.println("Desea retroceder o salir?  marque R para retroceder o E para salir: ");
+                            String desicion=sc.next();
+                            if(desicion.equals("R") ||desicion.equals("r")){
+                                indice--;
+                            }
+                            if(desicion.equals("E") ||desicion.equals("e")){
+                                System.out.println("Fin del programa");
+                                break;
+                            }
+                        }
+                        }
                     }
-                    else
-                        indice++;
-                        }
                 }
             
                @Override
