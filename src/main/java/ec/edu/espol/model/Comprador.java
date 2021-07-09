@@ -126,26 +126,53 @@ public class Comprador extends Persona{
                     System.out.println("Color: "+vehiculosCondicion.get(indice).color);
                     System.out.println("Tipo de Combustible: "+vehiculosCondicion.get(indice).combustible);
                     System.out.println("Precio: "+vehiculosCondicion.get(indice).precio);
-                    System.out.println("Continuar? de ser asi marque S si desea regresar al vehiculo anterior marque R");
-                    String desicion=sc.next();
-                    if(indice<vehiculosCondicion.size() &&indice>0){
-                        if(desicion.equals("S") ||desicion.equals("s"))
-                            indice++;
-                        if(desicion.equals("R") ||desicion.equals("r"))
-                            indice--;
+                    if(vehiculosCondicion.size()>1){
+                        if(indice<vehiculosCondicion.size() &&indice==0){
+                            System.out.println("Continuar? de ser asi marque S: ");
+                            String desicion=sc.next();
+                            if(desicion.equals("S") ||desicion.equals("s"))
+                                indice++;
+                            System.out.println("Placa: "+vehiculosCondicion.get(indice).placa);
+                            System.out.println("Marca: "+vehiculosCondicion.get(indice).marca);
+                            System.out.println("Modelo: "+vehiculosCondicion.get(indice).modelo);
+                            System.out.println("Tipo de motor: "+vehiculosCondicion.get(indice).motor);
+                            System.out.println("Año: "+vehiculosCondicion.get(indice).año);
+                            System.out.println("Recorrido: "+vehiculosCondicion.get(indice).recorrido);
+                            System.out.println("Color: "+vehiculosCondicion.get(indice).color);
+                            System.out.println("Tipo de Combustible: "+vehiculosCondicion.get(indice).combustible);
+                            System.out.println("Precio: "+vehiculosCondicion.get(indice).precio);    
                         }
-                    if(indice==vehiculosCondicion.size()){
-                        System.out.println("Desea retroceder o desea salir? si desea retroceder marque R, si desea salir Marque E: ");
-                        desicion=sc.next();
-                        if(desicion.equals("R") ||desicion.equals("r"))
-                            indice--;
-                        if(desicion.equals("E") ||desicion.equals("e"))
-                            siguiente=false;
+                        if(indice>0 && indice<vehiculosCondicion.size()-1){
+                            System.out.println("Continuar? de ser asi marque S, si desea regresar al vehiculo anterior marque R: ");
+                            String desicion=sc.next();
+                            if(desicion.equals("S") ||desicion.equals("s"))
+                                indice++;
+                            if(desicion.equals("R") ||desicion.equals("r"))
+                                indice--;
+                            System.out.println("Placa: "+vehiculosCondicion.get(indice).placa);
+                            System.out.println("Marca: "+vehiculosCondicion.get(indice).marca);
+                            System.out.println("Modelo: "+vehiculosCondicion.get(indice).modelo);
+                            System.out.println("Tipo de motor: "+vehiculosCondicion.get(indice).motor);
+                            System.out.println("Año: "+vehiculosCondicion.get(indice).año);
+                            System.out.println("Recorrido: "+vehiculosCondicion.get(indice).recorrido);
+                            System.out.println("Color: "+vehiculosCondicion.get(indice).color);
+                            System.out.println("Tipo de Combustible: "+vehiculosCondicion.get(indice).combustible);
+                            System.out.println("Precio: "+vehiculosCondicion.get(indice).precio);
+                        }
+                        else{
+                            System.out.println("Desea retroceder o salir?  marque R para retroceder o E para salir: ");
+                            String desicion=sc.next();
+                            if(desicion.equals("R") ||desicion.equals("r")){
+                                indice--;
+                            }
+                            if(desicion.equals("E") ||desicion.equals("e")){
+                                System.out.println("Fin del programa");
+                                break;
+                            }
+                        }
+                        }
                     }
-                    else
-                        indice++;
-                        }
-                }
+            }
             }
             else
                 while(siguiente=true){
