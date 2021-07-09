@@ -127,12 +127,22 @@ public class Comprador extends Persona{
                     System.out.println("Color: "+vehiculosCondicion.get(indice).color);
                     System.out.println("Tipo de Combustible: "+vehiculosCondicion.get(indice).combustible);
                     System.out.println("Precio: "+vehiculosCondicion.get(indice).precio);
-                    System.out.println("OFERTAR?: S/N");
+                    System.out.println("OFERTAR?: si desea ofertar pulse S, si no desea ofertar ingrese cualquier otra letra");
                     String ofertar=sc.next();
                     if(ofertar.equals("S")||ofertar.equals("s")){
+                        System.out.println("Ingrese su correo: ");
+                        String correo=sc.next();
+                        boolean op=Comprador.ComprobarCorreoComprador("ArchivoCompradores.txt",correo);
+                        while(op==false){
+                            System.out.println("Ingrese correo electronico valido: ");
+                            String correo_n=sc.next();
+                            correo=correo.replaceAll(correo,correo_n);
+                        }
+                        System.out.println("Ingrese valor a ofertar: ");
                         valor=sc.nextDouble();
-                        //Comprador.saveFileMATICULA(, valor);
-                        //vehiculosCondicion.remove(indice);
+                        Oferta o=new Oferta(correo,valor);
+                        o.saveFile("Ofertas.txt");
+                        vehiculosCondicion.remove(indice);
                     }             
                     if(vehiculosCondicion.size()>1){
                         if(indice<vehiculosCondicion.size() &&indice==0){

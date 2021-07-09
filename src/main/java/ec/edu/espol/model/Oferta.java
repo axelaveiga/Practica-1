@@ -15,9 +15,9 @@ import java.io.PrintWriter;
  */
 public class Oferta {
     private String correo;
-    private String precio;
+    private double precio;
     
-  public Oferta(String correo, String precio){
+  public Oferta(String correo, double precio){
       this.correo=  correo;
       this.precio= precio;
   }
