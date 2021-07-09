@@ -140,7 +140,7 @@ public class Comprador extends Persona{
                         }
                         System.out.println("Ingrese valor a ofertar: ");
                         valor=sc.nextDouble();
-                        Oferta o=new Oferta(correo,valor);
+                        Oferta o=new Oferta(correo,valor,vehiculosCondicion.get(indice).placa);
                         o.saveFile("Ofertas.txt");
                         vehiculosCondicion.remove(indice);
                     }             
@@ -257,3 +257,4 @@ public class Comprador extends Persona{
                     return "Nombres: "+this.nombres+" Apellidos: "+this.apellidos+" Correo electronico: "+this.correo+" Organizacion: "+this.organizacion ;
                 }         
     }
+

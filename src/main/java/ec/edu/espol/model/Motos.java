@@ -7,6 +7,7 @@ package ec.edu.espol.model;
 
 import java.util.Scanner;
 
+
 /**
  *
  * @author Josue Vera
@@ -16,36 +17,37 @@ public class Motos extends Vehiculo {
     public Motos(String placa, String marca, String modelo, String motor, int año, double recorrido, String color, String combustible, double precio) {
         super(placa, marca, modelo, motor, año, recorrido, color, combustible, precio);
     }
-
-    public static void DatosMoto(Scanner sc) {
+    public static void DatosMoto(Scanner sc){
         System.out.println("Ingrese la placa del vehiculo: ");
-        String placa = sc.next();
-        Boolean op = Vehiculo.ComprobarPlaca("Vehiculos.txt", placa);
-        while (op == true) {
+        String placa =sc.next();
+        Boolean op=Vehiculo.ComprobarPlaca("Vehiculos.txt",placa);
+        while(op==true){
             System.out.println("Placa ya registrada en el sistema, por favor ingrese otra: ");
-            String placa_n = sc.next();
-            placa = placa.replaceAll(placa, placa_n);
-            op = Vehiculo.ComprobarPlaca("Vehiculos.txt", placa);
+            String placa_n=sc.next();
+            placa=placa.replaceAll(placa,placa_n);
+            op=Vehiculo.ComprobarPlaca("Vehiculos.txt",placa);
         }
         System.out.println("Ingrese la marca del marca: ");
-        String marca = sc.next();
+        String marca= sc.next();
         System.out.println("Ingrese el modelo del modelo: ");
-        String modelo = sc.next();
+        String modelo= sc.next();
         System.out.println("Ingrese el tipo de motor que tiene el vehiculo: ");
-        String motor = sc.next();
+        String motor=sc.next();
         System.out.println("Ingrese el año del vehiculo: ");
-        int año = sc.nextInt();
+        int año= sc.nextInt();
         System.out.println("Ingrese el kilometraje del vehiculo: ");
-        double recorrido = sc.nextDouble();
+        double recorrido=sc.nextDouble();
         System.out.println("Ingrese el color del vehiculo: ");
-        String color = sc.next();
+        String color=sc.next();
         System.out.println("Ingrese el tipo de combustible que usa el vehiculo: ");
-        String combustible = sc.next();
+        String combustible=sc.next();
         System.out.println("Ingrese el precio de su vehiculo: ");
-        double precio = sc.nextDouble();
-        Vehiculo moto = new Motos(placa, marca, modelo, motor, año, recorrido, color, combustible, precio);
+        double precio= sc.nextDouble();
+        Vehiculo moto= new Motos(placa,marca,modelo,motor,año,recorrido,color,combustible,precio);
         moto.saveFile("Vehiculos.txt");
         moto.saveFile("Motos.txt");
     }
 
-}
+    }
+    
+  

@@ -89,7 +89,7 @@ public class Vendedor extends Persona {
     }
 
     public void saveFile(String nomfile) {
-        try (PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nomfile), true))) {
+        try ( PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nomfile), true))) {
             pw.println(this.nombres + "|" + this.apellidos + "|" + this.organizacion + "|" + this.correo + "|" + this.clave);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -132,7 +132,7 @@ public class Vendedor extends Persona {
 
     public static ArrayList<Vendedor> readFile(String nomfile) {
         ArrayList<Vendedor> Vendedores = new ArrayList<>();
-        try (Scanner sc = new Scanner(new File(nomfile))) {
+        try ( Scanner sc = new Scanner(new File(nomfile))) {
             while (sc.hasNextLine()) {
                 String linea = sc.nextLine();
                 String[] tokens = linea.split("\\|");
@@ -181,10 +181,60 @@ public class Vendedor extends Persona {
             correo = correo.replaceAll(contrasenia, contrasenia_n);
             permiso = Vendedor.ComprobarCreedencialesVendedor("ArchivoVendedores.txt", correo, contrasenia);
         }
-        System.out.println("Ingrese placa del vehiculo: ");
+        int indice = 0;
+        boolean siguiente = true;
 
-        System.out.println("");
-        //TERMINAR COMPRADOR
+        System.out.println("Ingrese placa del vehiculo: ");
+        String placa = sc.next();
+        ArrayList<Oferta> ofertas = Oferta.readFile("Ofertas.txt");
+        ArrayList<Oferta> Ofertasseleccionadas = new ArrayList<>();
+        for (Oferta o : ofertas) {
+            if (o.getPlaca().equals(placa)) {
+                Ofertasseleccionadas.add(o);
+            }
+        }
+        while (siguiente == true) {
+            System.out.println("Oferta" + indice + 1);
+            System.out.println("Correo: " + Ofertasseleccionadas.get(indice).correo);
+            System.out.println("Precio Ofertad : " + Ofertasseleccionadas.get(indice).precio);
+            System.out.println("Dese aceptar esta oferta?");
+            if (Ofertasseleccionadas.size() > 1) {
+                if (indice < Ofertasseleccionadas.size() && indice == 0) {
+                    System.out.println("Continuar? de ser asi marque S: ");
+                    String desicion = sc.next();
+                    if (desicion.equals("S") || desicion.equals("s")) {
+                        indice++;
+                    }
+                    System.out.println("Correo: " + Ofertasseleccionadas.get(indice).correo);
+                    System.out.println("Precio Ofertad : " + Ofertasseleccionadas.get(indice).precio);
+
+                }
+                if (indice > 0 && indice < Ofertasseleccionadas.size() - 1) {
+                    System.out.println("Continuar? de ser asi marque S, si desea regresar al vehiculo anterior marque R: ");
+                    String desicion = sc.next();
+                    if (desicion.equals("S") || desicion.equals("s")) {
+                        indice++;
+                    }
+                    if (desicion.equals("R") || desicion.equals("r")) {
+                        indice--;
+                    }
+                    System.out.println("Correo: " + Ofertasseleccionadas.get(indice).correo);
+                    System.out.println("Precio Ofertad : " + Ofertasseleccionadas.get(indice).precio);
+                } else {
+                    System.out.println("Desea retroceder o salir?  marque R para retroceder o E para salir: ");
+                    String desicion = sc.next();
+                    if (desicion.equals("R") || desicion.equals("r")) {
+                        indice--;
+                    }
+                    if (desicion.equals("E") || desicion.equals("e")) {
+                        System.out.println("Regresando a inicio...");
+                        break;
+                    }
+                }
+            }
+
+            //TERMINAR COMPRADOR
+        }
     }
 
     @Override
