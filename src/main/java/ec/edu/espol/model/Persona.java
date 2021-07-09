@@ -4,14 +4,17 @@
  * and open the template in the editor.
  */
 package ec.edu.espol.model;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+
 /**
  *
  * @author Josue Vera
  */
 public class Persona {
+
     protected String nombres;
     protected String apellidos;
     protected String correo;
@@ -65,48 +68,48 @@ public class Persona {
     public void setClave(String clave) {
         this.clave = clave;
     }
-        public static boolean validarEmail(String email){
+
+    public static boolean validarEmail(String email) {
         boolean valido = false;
         String local;
         String dominio;
-        char [] caracteres = {'(', ')', '[', ']', '\\',',', ';',':', '<', '>', ' '};
+        char[] caracteres = {'(', ')', '[', ']', '\\', ',', ';', ':', '<', '>', ' '};
         int posicionArroba = email.indexOf('@');
-        if (posicionArroba != -1){
-          local = email.substring(0,posicionArroba);
-          dominio= email.substring(posicionArroba + 1,email.length());
-          if(local.length()> 0 && dominio.length() > 0){
-              int posicionPunto = local.lastIndexOf('.');
-              if(posicionPunto == -1){
-                for (int i = 0; i < local.length(); i++) {
-                  for (int j = 0; j < caracteres.length; j++) {
-                    if(local.charAt(i)!= caracteres[j]){
-                      valido = true;
+        if (posicionArroba != -1) {
+            local = email.substring(0, posicionArroba);
+            dominio = email.substring(posicionArroba + 1, email.length());
+            if (local.length() > 0 && dominio.length() > 0) {
+                int posicionPunto = local.lastIndexOf('.');
+                if (posicionPunto == -1) {
+                    for (int i = 0; i < local.length(); i++) {
+                        for (int j = 0; j < caracteres.length; j++) {
+                            if (local.charAt(i) != caracteres[j]) {
+                                valido = true;
+                            }
+                        }
                     }
-                  }
                 }
-              }
             }
-          }
+        }
         return valido;
     }
 
-        public static String convertirSHA256(String password) {
-            MessageDigest md = null;
-            try {
-                    md = MessageDigest.getInstance("SHA-256");
-            } 
-            catch (NoSuchAlgorithmException e) {		
-                    e.printStackTrace();
-                    return null;
-            }
-
-            byte[] hash = md.digest(password.getBytes());
-            StringBuffer sb = new StringBuffer();
-
-            for(byte b : hash) {        
-                    sb.append(String.format("%02x", b));
-            }
-
-            return sb.toString();
+    public static String convertirSHA256(String password) {
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
         }
+
+        byte[] hash = md.digest(password.getBytes());
+        StringBuffer sb = new StringBuffer();
+
+        for (byte b : hash) {
+            sb.append(String.format("%02x", b));
+        }
+
+        return sb.toString();
+    }
 }
