@@ -45,15 +45,15 @@ public class Comprador extends Persona{
 
         String contrasenaConvertida=Persona.convertirSHA256(contrasena);
         Comprador c=new Comprador(nombre,apellidos,organizacion,correo,contrasenaConvertida);
-        c.saveFile("ArchivoCompradores");
+        c.saveFile("ArchivoCompradores.txt");
     }
         public void saveFile(String nomfile) {
-        try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nomfile), true)))
-            {
-                pw.println(this.nombres +"|"+ this.apellidos +"|"+ this.organizacion+"|"+ this.correo +"|"+ this.clave);
-            }
-        catch(Exception e) {System.out.println(e.getMessage());
-                    }
+            try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nomfile), true)))
+                {
+                    pw.println(this.nombres +"|"+ this.apellidos +"|"+ this.organizacion+"|"+ this.correo +"|"+ this.clave);
+                }
+            catch(Exception e) {System.out.println(e.getMessage());
+                        }
         }
         public static ArrayList<Comprador> readFile(String nomfile){
         ArrayList<Comprador> compradores = new ArrayList<>();
@@ -103,6 +103,7 @@ public class Comprador extends Persona{
             ArrayList<Vehiculo>VehiculossinRestriccion=Vehiculo.readFile("Vehiculos.txt");
             boolean siguiente=true;
             int indice=0;
+            double valor;
             if(tipo.equalsIgnoreCase("auto")||tipo.equalsIgnoreCase("moto")||tipo.equalsIgnoreCase("camioneta")){
                 String firstLtr = tipo.substring(0, 1);
                 String restLtrs = tipo.substring(1, tipo.length());
@@ -126,6 +127,13 @@ public class Comprador extends Persona{
                     System.out.println("Color: "+vehiculosCondicion.get(indice).color);
                     System.out.println("Tipo de Combustible: "+vehiculosCondicion.get(indice).combustible);
                     System.out.println("Precio: "+vehiculosCondicion.get(indice).precio);
+                    System.out.println("OFERTAR?: S/N");
+                    String ofertar=sc.next();
+                    if(ofertar.equals("S")||ofertar.equals("s")){
+                        valor=sc.nextDouble();
+                        //Comprador.saveFileMATICULA(, valor);
+                        //vehiculosCondicion.remove(indice);
+                    }             
                     if(vehiculosCondicion.size()>1){
                         if(indice<vehiculosCondicion.size() &&indice==0){
                             System.out.println("Continuar? de ser asi marque S: ");
@@ -237,6 +245,6 @@ public class Comprador extends Persona{
                @Override
                 public String toString(){
                     return "Nombres: "+this.nombres+" Apellidos: "+this.apellidos+" Correo electronico: "+this.correo+" Organizacion: "+this.organizacion ;
-        }         
+                }         
     }
 
