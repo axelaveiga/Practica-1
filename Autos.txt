@@ -1,0 +1,1 @@
+abc123|ferrari|auto|abc123|2020|12.0|azul|super|100000.0

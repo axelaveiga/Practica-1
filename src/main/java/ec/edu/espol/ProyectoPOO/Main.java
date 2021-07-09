@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package ec.edu.espol.ProyectoPOO;
-import ec.edu.espol.model.Menu;
 import ec.edu.espol.model.Comprador;
 import ec.edu.espol.model.Persona;
 import ec.edu.espol.model.Vendedor;
@@ -45,6 +44,7 @@ public class Main {
         //c.saveFile("ArchivoCompradores.txt");
             int opcion =0;
             do{
+               System.out.println("---------------------------------");
                System.out.println("-- Menu de opciones --");
                System.out.println("1. Vendedor");
                System.out.println("2. Comprador");
@@ -55,6 +55,8 @@ public class Main {
                 case 1:
                    int opcionv=0;
                    do{
+                       System.out.println("---------------------------------");
+                       System.out.println("-- Menu Vendedor --");
                        System.out.println("1. Registrar un nuevo vendedor");
                        System.out.println("2. Ingresar un nuevo vehiculo");
                        System.out.println("3. Aceptar oferta");
@@ -63,10 +65,13 @@ public class Main {
                        opcionv = sc.nextInt();
                        switch(opcionv){
                            case 1:
+                               Vendedor.RegistarVendedor(sc);
                                break;
                            case 2:
+                               Vendedor.RegistrarVehiculo(sc);
                                break;
                            case 3:
+                               
                                break;
                            case 4:
                                break;
@@ -77,6 +82,8 @@ public class Main {
                 case 2:
                    int opcionc=0;
                    do{
+                       System.out.println("---------------------------------");
+                       System.out.println("-- Menu Comprador --");
                        System.out.println("1. Registrar un nuevo comprador");
                        System.out.println("2. Ofertar por un vehiculo");
                        System.out.println("3. Regresar");
@@ -84,6 +91,7 @@ public class Main {
                        opcionc = sc.nextInt();
                        switch(opcionc){
                            case 1:
+                               Comprador.RegistarComprador(sc);
                                break;
                            case 2:
                                break;
