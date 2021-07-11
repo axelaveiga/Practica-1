@@ -25,9 +25,9 @@ public class Main {
      */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        sc.useDelimiter("\n");
         sc.useLocale(Locale.US); 
         int opcion = 0;
+        
         do {
             System.out.println("---------------------------------");
             System.out.println("-- Menu de opciones --");
@@ -56,7 +56,7 @@ public class Main {
                                 Vendedor.RegistrarVehiculo(sc);
                                 break;
                             case 3:
-
+                                 Vendedor.AceptarOferta(sc);
                                 break;
                             case 4:
                                 break;
@@ -78,6 +78,7 @@ public class Main {
                                 Comprador.RegistarComprador(sc);
                                 break;
                             case 2:
+                                Comprador.OfertarVehiculo(sc);
                                 break;
                             case 3:
                                 break;
@@ -89,6 +90,7 @@ public class Main {
                     break;
             }
         } while (opcion != 3);
-
+        
+    
     }
 }
