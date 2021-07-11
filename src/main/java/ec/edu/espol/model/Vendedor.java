@@ -69,11 +69,11 @@ public class Vendedor extends Persona {
 
     public static void RegistarVendedor(Scanner sc) {
         System.out.println("Ingrese sus nombres: ");
-        String nombre = sc.next();
+        String nombre = sc.nextLine();
         System.out.println("Ingrese sus Apellidos: ");
-        String apellidos = sc.next();
+        String apellidos = sc.nextLine();
         System.out.println("Ingrese la Organizacion donde trabaja: ");
-        String organizacion = sc.next();
+        String organizacion = sc.nextLine();
         System.out.println("Ingrese su correo electronico: ");
         String correo = sc.next();
         while (Persona.validarEmail(correo) == false) {
@@ -119,10 +119,10 @@ public class Vendedor extends Persona {
             permiso = Vendedor.ComprobarCreedencialesVendedor("ArchivoVendedores.txt", correo, contrasenia);
         }
         System.out.println("Ingrese el tipo de vehiculo que quiere registrar: ");
-        String tipo = sc.next();
+        String tipo = sc.nextLine();
         while ((tipo.equalsIgnoreCase("auto") || tipo.equalsIgnoreCase("moto") || tipo.equalsIgnoreCase("camioneta")) == false) {
             System.out.println("Ingrese si su vehiculo es: auto-moto-camioneta");
-            String tipon = sc.next();
+            String tipon = sc.nextLine();
             tipo = tipo.replaceAll(tipo, tipon);
         }
         if (tipo.equalsIgnoreCase("auto")) {
@@ -191,7 +191,7 @@ public class Vendedor extends Persona {
         boolean siguiente = true;
 
         System.out.println("Ingrese placa del vehiculo: ");
-        String placa = sc.next();
+        String placa = sc.nextLine();
         ArrayList<Oferta> ofertas = Oferta.readFile("Ofertas.txt");
         ArrayList<Oferta> Ofertasseleccionadas = new ArrayList<>();
         for (Oferta o : ofertas) {
@@ -202,7 +202,7 @@ public class Vendedor extends Persona {
         while (siguiente == true) {
             System.out.println("Oferta" + indice + 1);
             System.out.println("Correo: " + Ofertasseleccionadas.get(indice).correo);
-            System.out.println("Precio Ofertad : " + Ofertasseleccionadas.get(indice).precio);
+            System.out.println("Precio Ofertado : " + Ofertasseleccionadas.get(indice).precio);
             System.out.println("Dese aceptar esta oferta?: S para aceptar, cualquier otra letra para continuar revizando las ofertas");
             String opcion=sc.next();
             if(opcion.equals("S")||opcion.equals("s"))
