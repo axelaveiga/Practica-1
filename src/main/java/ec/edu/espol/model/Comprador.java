@@ -142,7 +142,6 @@ public class Comprador extends Persona{
                         valor=sc.nextDouble();
                         Oferta o=new Oferta(correo,valor,vehiculosCondicion.get(indice).placa);
                         o.saveFile("Ofertas.txt");
-                        vehiculosCondicion.remove(indice);
                     }             
                     if(vehiculosCondicion.size()>1){
                         if(indice<vehiculosCondicion.size() &&indice==0){
@@ -257,4 +256,3 @@ public class Comprador extends Persona{
                     return "Nombres: "+this.nombres+" Apellidos: "+this.apellidos+" Correo electronico: "+this.correo+" Organizacion: "+this.organizacion ;
                 }         
     }
-

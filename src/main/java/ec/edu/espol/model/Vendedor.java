@@ -10,7 +10,13 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 /**
  *
  * @author Josue Vera
@@ -197,7 +203,10 @@ public class Vendedor extends Persona {
             System.out.println("Oferta" + indice + 1);
             System.out.println("Correo: " + Ofertasseleccionadas.get(indice).correo);
             System.out.println("Precio Ofertad : " + Ofertasseleccionadas.get(indice).precio);
-            System.out.println("Dese aceptar esta oferta?");
+            System.out.println("Dese aceptar esta oferta?: S para aceptar, cualquier otra letra para continuar revizando las ofertas");
+            String opcion=sc.next();
+            if(opcion.equals("S")||opcion.equals("s"))
+                Vendedor.enviarConGMail(correo, contrasenia, Ofertasseleccionadas.get(indice).correo, "VENTA DE VEHICULO", "VENTA EN PROCESO, COMINIQUESE CON EL VENDEDOR POR ESTE MEDIO");
             if (Ofertasseleccionadas.size() > 1) {
                 if (indice < Ofertasseleccionadas.size() && indice == 0) {
                     System.out.println("Continuar? de ser asi marque S: ");
@@ -207,6 +216,11 @@ public class Vendedor extends Persona {
                     }
                     System.out.println("Correo: " + Ofertasseleccionadas.get(indice).correo);
                     System.out.println("Precio Ofertad : " + Ofertasseleccionadas.get(indice).precio);
+                    System.out.println("Dese aceptar esta oferta?: S para aceptar, cualquier otra letra para continuar revizando las ofertas");
+                    opcion=sc.next();
+                    if(opcion.equals("S")||opcion.equals("s"))
+                        Vendedor.enviarConGMail(correo, contrasenia, Ofertasseleccionadas.get(indice).correo, "VENTA DE VEHICULO", "VENTA EN PROCESO, COMINIQUESE CON EL VENDEDOR POR ESTE MEDIO");
+                    
 
                 }
                 if (indice > 0 && indice < Ofertasseleccionadas.size() - 1) {
@@ -220,6 +234,10 @@ public class Vendedor extends Persona {
                     }
                     System.out.println("Correo: " + Ofertasseleccionadas.get(indice).correo);
                     System.out.println("Precio Ofertad : " + Ofertasseleccionadas.get(indice).precio);
+                    System.out.println("Dese aceptar esta oferta?: S para aceptar, cualquier otra letra para continuar revizando las ofertas");
+                    opcion=sc.next();
+                    if(opcion.equals("S")||opcion.equals("s"))
+                        Vendedor.enviarConGMail(correo, contrasenia, Ofertasseleccionadas.get(indice).correo, "VENTA DE VEHICULO", "VENTA EN PROCESO, COMINIQUESE CON EL VENDEDOR POR ESTE MEDIO");
                 } else {
                     System.out.println("Desea retroceder o salir?  marque R para retroceder o E para salir: ");
                     String desicion = sc.next();
@@ -232,11 +250,32 @@ public class Vendedor extends Persona {
                     }
                 }
             }
-
-            //TERMINAR COMPRADOR
         }
     }
-
+    public static void enviarConGMail(String remitente, String clave,String destinatario, String asunto, String cuerpo) {
+    Properties props = System.getProperties();
+    props.put("mail.smtp.host", "smtp.gmail.com"); 
+    props.put("mail.smtp.user", remitente);
+    props.put("mail.smtp.clave", "miClaveDeGMail");   
+    props.put("mail.smtp.auth", "true");   
+    props.put("mail.smtp.starttls.enable", "true");
+    props.put("mail.smtp.port", "587");     
+    Session session = Session.getInstance(props,null);
+    MimeMessage message = new MimeMessage(session);
+    try {
+        message.setFrom(new InternetAddress(remitente));
+        message.addRecipients(Message.RecipientType.TO, new InternetAddress[] { new InternetAddress(destinatario) });
+        message.setSubject(asunto);
+        message.setText(cuerpo);
+        Transport transport = session.getTransport("smtp");
+        transport.connect("smtp.gmail.com", remitente, clave);
+        transport.sendMessage(message, message.getAllRecipients());
+        transport.close();
+    }
+    catch (MessagingException me) {
+        me.printStackTrace();   //Si se produce un error
+    }
+}
     @Override
     public String toString() {
         return "Nombres: " + this.nombres + " Apellidos: " + this.apellidos + " Correo electronico: " + this.correo + " Organizacion: " + this.organizacion;
